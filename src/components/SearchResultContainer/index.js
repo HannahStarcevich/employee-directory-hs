@@ -6,7 +6,7 @@ import "./style.css";
 
 class SearchResultContainer extends Component {
     state = {
-        // search: "",
+        userInput: "",
         results: []
       };
     
@@ -21,17 +21,11 @@ class SearchResultContainer extends Component {
           .catch(err => console.log(err));
       };
     
-    //   searchPeople = query => {
-    //     API.search(query)
-    //       .then(res => this.setState({ results: res.data.data }))
-    //       .catch(err => console.log(err));
-    //   };
-    
       handleInputChange = event => {
-        const name = event.target.name;
+
         const value = event.target.value;
         this.setState({
-          [name]: value
+          userInput: value
         });
       };
     
@@ -42,13 +36,13 @@ class SearchResultContainer extends Component {
       };
     
       render() {
-          console.log(this.state.results)
+          console.log(this.state.userInput)
         return (
           <div>
             <SearchBar
               search={this.state.search}
-              handleFormSubmit={this.handleFormSubmit}
-              handleInputChange={this.handleInputChange}
+              onFormSubmit={this.handleFormSubmit}
+              onInputChange={this.handleInputChange}
             />
             <EmployeeResultList results={this.state.results} />
           </div>
