@@ -1,9 +1,9 @@
 # Employee-Directory_HS
   
 ## Description
-This employee directory features the [Random User API](https://randomuser.me/) is a full stack web app built on React. The UI is comprised of components, responds to user search and clears the search bar.
-[GitHub Repo](https://github.com/HannahStarcevich/PWA-Budget-Tracker_HS)
-[Live Site on Heroku](https://employee-directory-hs.herokuapp.com/)
+This employee directory is a full stack web app built on React and features the [Random User API](https://randomuser.me/). The UI is comprised of components, responds to user search and clears the search bar.
+* [GitHub Repo](https://github.com/HannahStarcevich/PWA-Budget-Tracker_HS)
+* [Live Site on Heroku](https://employee-directory-hs.herokuapp.com/)
 
 ## Table of Contents
 * [Installation](#installation)
