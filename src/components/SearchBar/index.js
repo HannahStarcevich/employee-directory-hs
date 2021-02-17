@@ -17,6 +17,9 @@ function SearchBar(props) {
         <button onClick={props.onFormSubmit} className="btn btn-primary mt-3">
           Search
         </button>
+        <button onClick={props.clearFilter} className="btn btn-danger mt-3">
+          Clear
+        </button>
       </div>
     </form>
   );

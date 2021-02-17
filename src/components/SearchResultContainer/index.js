@@ -6,8 +6,9 @@ import "./style.css";
 
 class SearchResultContainer extends Component {
     state = {
-        userInput: "",
-        results: []
+        search: "",
+        results: [],
+        filteredResults: []
       };
     
       // When this component mounts, search the randompeople API
@@ -17,7 +18,10 @@ class SearchResultContainer extends Component {
 
         searchPeople = query => {
         API.search(query)
-          .then(res => this.setState({ results: res.data.results }))
+          .then(res => this.setState({ 
+            ...this.state,
+            results: res.data.results,
+           filteredResults: res.data.results}))
           .catch(err => console.log(err));
       };
     
@@ -25,26 +29,42 @@ class SearchResultContainer extends Component {
 
         const value = event.target.value;
         this.setState({
-          userInput: value
+          ...this.state,
+          search: value
         });
       };
     
-      // When the form is submitted, search the Giphy API for `this.state.search`
+      // When the form is submitted, search the API
       handleFormSubmit = event => {
         event.preventDefault();
-        this.searchPeople(this.state.search);
+        // this.searchPeople(this.state.search);
+        this.setState({
+          ...this.state,
+          filteredResults: this.state.results.filter( (person) => person.name.first.toLowerCase() === this.state.search.toLowerCase()), search:""})
+        
       };
+
+      clearFilter = event => {
+        event.preventDefault();
+        // this.searchPeople(this.state.search);
+        this.setState({
+          ...this.state,
+          filteredResults: this.state.results
+        
+      })
+    }
     
       render() {
-          console.log(this.state.userInput)
+          console.log(this.state.search)
         return (
           <div>
             <SearchBar
               search={this.state.search}
               onFormSubmit={this.handleFormSubmit}
               onInputChange={this.handleInputChange}
+              clearFilter={this.clearFilter}
             />
-            <EmployeeResultList results={this.state.results} />
+            <EmployeeResultList results={this.state.filteredResults} />
           </div>
         );
       }
