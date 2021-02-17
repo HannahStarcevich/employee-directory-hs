@@ -15,7 +15,7 @@ This employee directory features the [Random User API](https://randomuser.me/) i
 Interacting developers must install utilize React, Heroku, GitHub and install JSON dependencies, including axios to search the API.
 
 ## Usage
-Use this application is used by employers and employees to scan view all employees, search by name and discover contact details. 
+This application is used by employers and employees to scan a database of employees, search by name and discover contact details. 
 ![Employee-Directory-Site](Employee-Directory.png)
         
 ## Contributing
