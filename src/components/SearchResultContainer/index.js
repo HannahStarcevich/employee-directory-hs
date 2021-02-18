@@ -8,26 +8,32 @@ class SearchResultContainer extends Component {
     state = {
         search: "",
         results: [],
-        filteredResults: []
-      };
+        filteredResults: [],
+        alphabeticList: [],
+    };
     
       // When this component mounts, search the randompeople API
       componentDidMount() {
         this.searchPeople();
       };
 
-        searchPeople = query => {
+      searchPeople = query => {
+        
         API.search(query)
-          .then(res => this.setState({ 
+          
+        .then(res => this.setState({ 
             ...this.state,
             results: res.data.results,
-           filteredResults: res.data.results}))
+            filteredResults: res.data.results,
+            alphabeticList: res.data.results
+          }))
           .catch(err => console.log(err));
       };
     
       handleInputChange = event => {
 
         const value = event.target.value;
+        
         this.setState({
           ...this.state,
           search: value
@@ -36,17 +42,29 @@ class SearchResultContainer extends Component {
     
       // When the form is submitted, search the API
       handleFormSubmit = event => {
+        
         event.preventDefault();
-        // this.searchPeople(this.state.search);
+
         this.setState({
           ...this.state,
           filteredResults: this.state.results.filter( (person) => person.name.first.toLowerCase() === this.state.search.toLowerCase()), search:""})
-        
       };
 
-      clearFilter = event => {
+      handleNameSort = event => {
+     
         event.preventDefault();
-        // this.searchPeople(this.state.search);
+        
+        this.setState({
+          ...this.state,
+          filteredResults: this.state.results.sort((a,b) => a.name.first > b.name.first ? 1:-1)
+        })
+      
+      }
+
+      clearFilter = event => {
+
+        event.preventDefault();
+        
         this.setState({
           ...this.state,
           filteredResults: this.state.results
@@ -55,7 +73,7 @@ class SearchResultContainer extends Component {
     }
     
       render() {
-          console.log(this.state.search)
+      
         return (
           <div>
             <SearchBar
@@ -64,7 +82,8 @@ class SearchResultContainer extends Component {
               onInputChange={this.handleInputChange}
               clearFilter={this.clearFilter}
             />
-            <EmployeeResultList results={this.state.filteredResults} />
+
+            <EmployeeResultList results={this.state.filteredResults} handleNameSort={this.handleNameSort}/>
           </div>
         );
       }
