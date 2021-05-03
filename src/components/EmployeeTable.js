@@ -53,10 +53,10 @@ const headCells = [
   { id: 'firstName', numeric: false, disablePadding: false, label: 'First Name' },
   { id: 'lastName', numeric: false, disablePadding: false, label: 'Last Name' },
   { id: 'email', numeric: false, disablePadding: false, label: 'Email' },
+  { id: 'phone', numeric: false, disablePadding: false, label: 'Phone' },
   { id: 'city', numeric: false, disablePadding: false, label: 'City' },
   { id: 'state', numeric: false, disablePadding: false, label: 'State' },
-  { id: 'region', numeric: false, disablePadding: false, label: 'Region' },
-  { id: 'role', numeric: false, disablePadding: false, label: 'Role' }
+  { id: 'region', numeric: false, disablePadding: false, label: 'Country' },
 ];
 
 function EnhancedTableHead(props) {
@@ -148,7 +148,7 @@ const EnhancedTableToolbar = (props) => {
         </Typography>
       ) : (
         <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
-          ASF Users
+          Employee Directory
         </Typography>
       )}
 
@@ -280,17 +280,19 @@ export default function UserTable(props) {
               {stableSort(props.rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  const isItemSelected = isSelected(row.id);
+                const employeeId=row.id.value
+                  const isItemSelected = isSelected(employeeId);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
+                    // <NavLink style={{textDecoration: "none"}} to={`/userView/${employeeId}`}>
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.id)}
+                      onClick={(event) => handleClick(event, employeeId)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.id}
+                      key={employeeId}
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
@@ -299,21 +301,21 @@ export default function UserTable(props) {
                           inputProps={{ 'aria-labelledby': labelId }}
                         />
                       </TableCell>
-                      <TableCell component="th" id={labelId} scope="row" padding="none">
-                        <NavLink gutterBottom style={{textDecoration: "none"}} to={`/userView/${row.id}`}>{row.name.first}</NavLink> 
-                      </TableCell>
+                      
+                      <TableCell component="th" id={labelId} scope="row" padding="none">{row?.name.first}</TableCell>
                       <TableCell >{row?.name.last}</TableCell>
                       <TableCell >{row?.email}</TableCell>
                       <TableCell >{row?.phone}</TableCell>
-                      <TableCell >{row?.email}</TableCell>
-                      {/* <TableCell >{row?.ResidesInRegion?.name}</TableCell>
-                      <TableCell >{row.Roles.map( (role) => role.name).join(", ")}</TableCell> */}
+                      <TableCell >{row?.location.city}</TableCell>
+                      <TableCell >{row?.location.state}</TableCell>
+                      <TableCell >{row?.location.country}</TableCell>
                     </TableRow>
+                    // </NavLink> 
                   );
                 })}
               {emptyRows > 0 && (
                 <TableRow style={{ height: (33) * emptyRows }}>
-                  <TableCell colSpan={6} />
+                  <TableCell colSpan={7} />
                 </TableRow>
               )}
             </TableBody>
