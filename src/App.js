@@ -1,14 +1,18 @@
 import React from "react";
-import Header from "./components/Header";
-import SearchResultContainer from "./components/SearchResultContainer";
+import Home from "./pages/Home";
+import { ThemeProvider } from '@material-ui/core/styles';
+import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
+import theme from "./Theme"
 
-function App() {
+
+export default function App() {
   return (
-    <div>
-      <Header />
-      <SearchResultContainer />
-    </div>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/"><Home /></Route>
+        </Switch>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
-
-export default App;
