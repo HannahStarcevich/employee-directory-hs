@@ -8,15 +8,20 @@ import Divider from "@material-ui/core/Divider";
 import API from '../utils/API';
 import EmployeeTable from "../components/EmployeeTable"
 import Map from "../components/Map"
+import AppBar from "../components/AppAppBar"
 import Geocode from "react-geocode";
+import AppAppBar from '../components/AppAppBar';
+import AppFooter from '../components/AppFooter';
+import { RecentActorsSharp } from '@material-ui/icons';
+import ProductHero from '../components/ProductHero';
 
 
 const useStyles= makeStyles((theme) => ({
     mainContainer: {
-        marginLeft: theme.spacing(2),
+        marginLeft: theme.spacing(8),
         marginTop: theme.spacing(5),
         marginBottom: "5em",
-        width: "70%",
+        width: "90%",
         justifyContent: "space-evenly",
         [theme.breakpoints.down("md")]:{
             width: "80%"
@@ -60,13 +65,20 @@ export default function Home(){
     }
 
     return(
-        <Grid container className={classes.mainContainer}>
-            <Grid item>
-                <Typography variant="h4" color="primary">Insert Header Here</Typography>
+        
+        <React.Fragment>
+            <AppAppBar />
+            <ProductHero/>
+            <Grid container>
+                <Grid item className={classes.mainContainer}>
+                     <EmployeeTable rows={employees} />
+                </Grid>
+                <Grid item className={classes.mainContainer}>
+                    <Map employees={employees} center={coordinates} />
+                </Grid>
             </Grid>
-            <EmployeeTable rows={employees} />
-            <Map employees={employees} center={coordinates} />
-        </Grid>
+            <AppFooter/>
+        </React.Fragment>
     )
 }
 
