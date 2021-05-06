@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import PublicSharpIcon from '@material-ui/icons/PublicSharp';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
@@ -13,9 +14,6 @@ const styles = (theme) => ({
   placeholder: toolbarStyles(theme).root,
   toolbar: {
     justifyContent: 'space-between',
-  },
-  left: {
-    flex: 1,
   },
   leftLinkActive: {
     color: theme.palette.common.white,
@@ -42,15 +40,15 @@ function AppAppBar(props) {
     <div>
       <AppBar position="fixed">
         <Toolbar className={classes.toolbar}>
-          <div className={classes.left} />
+          <div />
           <Link
             variant="h6"
             underline="none"
             color="inherit"
             className={classes.title}
             href=""
-          >
-            {'Global Reach'}
+          ><PublicSharpIcon fontSize="large" />
+            {' Global Reach'}
           </Link>
           <div className={classes.right}>
             <Link

@@ -5,12 +5,12 @@ import MuiAppBar from '@material-ui/core/AppBar';
 
 const styles = (theme) => ({
   root: {
-    color: theme.palette.common.white,
+    color: theme.palette.orange.light,
   },
 });
 
 function AppBar(props) {
-  return <MuiAppBar elevation={2} position="static" {...props} />;
+  return <MuiAppBar elevation={2} position="static" color="primary" {...props} />;
 }
 
 AppBar.propTypes = {

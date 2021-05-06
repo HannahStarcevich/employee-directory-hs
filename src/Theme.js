@@ -33,6 +33,9 @@ const rawTheme = createMuiTheme({
           main: "#eb7a53",
           dark: "#a13e1c",
         },
+        blue: {
+          main: "#0e0e4c",
+        },
       },
       typography: {
         fontFamily: "'Manrope', sans-serif",
