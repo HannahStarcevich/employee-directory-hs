@@ -15,13 +15,14 @@ import AppFooter from '../components/AppFooter';
 import { RecentActorsSharp } from '@material-ui/icons';
 import ProductHero from '../components/ProductHero';
 import SearchBar from '../components/SearchBar';
+import MultiSelectChips from '../components/MultiSelectChips';
 
 
 const useStyles= makeStyles((theme) => ({
     mainContainer: {
         marginLeft: theme.spacing(8),
-        marginTop: theme.spacing(5),
-        marginBottom: "5em",
+        marginTop: theme.spacing(2),
+        marginBottom: "2em",
         width: "90%",
         justifyContent: "space-evenly",
         [theme.breakpoints.down("md")]:{
@@ -50,7 +51,9 @@ export default function Home(){
     const classes = useStyles();
 
     const [employees, setEmployees] = React.useState([]);
+    const [searchEmployee, setSearchedEmployees] = React.useState('');
     const [coordinates, setCoordinates] = React.useState({});
+    const [countries, setCountries] = React.useState([]);
 
     useEffect(() => {
         loadEmployees()
@@ -65,17 +68,27 @@ export default function Home(){
             }).catch(err => console.log(err))
     }
 
+    const handleSeachInputChange = (event) => {
+        setSearchedEmployees(event.target.value)
+    };
+
     return(
         
         <React.Fragment>
             <AppAppBar />
             <ProductHero/>
             <Grid container>
-                <Grid item>
-                    <SearchBar />
+                <Grid item item className={classes.mainContainer}>
+                    <SearchBar searchEmployee={searchEmployee} onChange={handleSeachInputChange}/>
+                    {/* <MultiSelectChips title={}/> */}
                 </Grid>
                 <Grid item className={classes.mainContainer}>
-                     <EmployeeTable rows={employees} />
+                     <EmployeeTable rows={employees.filter( (employee) => {
+                         if (!(employee.name.first.toLowerCase().includes(searchEmployee.toLowerCase()) || employee.name.last.toLowerCase().includes(searchEmployee.toLowerCase()) )) {
+                             return false;
+                         }
+                         return true;
+                        })} />
                 </Grid>
                 <Grid item className={classes.mainContainer}>
                     <Map employees={employees} center={coordinates} />
