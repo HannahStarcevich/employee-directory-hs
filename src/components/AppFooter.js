@@ -22,7 +22,7 @@ function Copyright() {
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    backgroundColor: theme.palette.secondary.light,
+    backgroundColor: theme.palette.orange.main,
   },
   container: {
     marginTop: theme.spacing(8),

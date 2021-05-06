@@ -14,6 +14,7 @@ import AppAppBar from '../components/AppAppBar';
 import AppFooter from '../components/AppFooter';
 import { RecentActorsSharp } from '@material-ui/icons';
 import ProductHero from '../components/ProductHero';
+import SearchBar from '../components/SearchBar';
 
 
 const useStyles= makeStyles((theme) => ({
@@ -70,6 +71,9 @@ export default function Home(){
             <AppAppBar />
             <ProductHero/>
             <Grid container>
+                <Grid item>
+                    <SearchBar />
+                </Grid>
                 <Grid item className={classes.mainContainer}>
                      <EmployeeTable rows={employees} />
                 </Grid>

@@ -1,6 +1,6 @@
 import {createMuiTheme} from "@material-ui/core/styles";
 import { green, grey, red } from '@material-ui/core/colors';
-
+import './font.css';
 
 const rawTheme = createMuiTheme({
     palette: {
@@ -28,14 +28,19 @@ const rawTheme = createMuiTheme({
           main: green[500],
           dark: green[700],
         },
+        orange: {
+          light: "#f5bca9",
+          main: "#eb7a53",
+          dark: "#a13e1c",
+        },
       },
       typography: {
-        fontFamily: "'Work Sans', sans-serif",
+        fontFamily: "'Manrope', sans-serif",
         fontSize: 14,
         fontWeightLight: 300, // Work Sans
         fontWeightRegular: 400, // Work Sans
         fontWeightMedium: 700, // Roboto Condensed
-        fontFamilySecondary: "'Roboto Condensed', sans-serif",
+        fontFamilySecondary: "'Spartan', sans-serif",
       },
     });
     

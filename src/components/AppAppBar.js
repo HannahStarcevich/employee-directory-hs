@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import AppBar from './AppBar';
-import Toolbar, { styles as toolbarStyles } from './ToolBar';
+import Toolbar, { styles as toolbarStyles } from './Toolbar';
 
 const styles = (theme) => ({
   title: {
@@ -26,7 +26,7 @@ const styles = (theme) => ({
     justifyContent: 'flex-end',
   },
   rightLink: {
-    fontSize: 16,
+    fontSize: 14,
     color: theme.palette.common.white,
     marginLeft: theme.spacing(3),
   },
@@ -48,7 +48,7 @@ function AppAppBar(props) {
             underline="none"
             color="inherit"
             className={classes.title}
-            href="/premium-themes/onepirate/"
+            href=""
           >
             {'Global Reach'}
           </Link>
@@ -58,7 +58,7 @@ function AppAppBar(props) {
               variant="h6"
               underline="none"
               className={classes.rightLink}
-              href="/premium-themes/onepirate/sign-in/"
+              href=""
             >
               {'Sign In'}
             </Link>
@@ -66,7 +66,7 @@ function AppAppBar(props) {
               variant="h6"
               underline="none"
               className={clsx(classes.rightLink, classes.linkSecondary)}
-              href="/premium-themes/onepirate/sign-up/"
+              href=""
             >
               {'Sign Up'}
             </Link>
