@@ -16,6 +16,7 @@ import { RecentActorsSharp } from '@material-ui/icons';
 import ProductHero from '../components/ProductHero';
 import SearchBar from '../components/SearchBar';
 import MultiSelectChips from '../components/MultiSelectChips';
+import FancyCard from '../components/FancyCard';
 
 
 const useStyles= makeStyles((theme) => ({
@@ -52,6 +53,7 @@ export default function Home(){
 
     const [employees, setEmployees] = React.useState([]);
     const [searchEmployee, setSearchedEmployees] = React.useState('');
+    const [clickEmployee, setClickedEmployees] = React.useState({});
     const [coordinates, setCoordinates] = React.useState({});
     const [countries, setCountries] = React.useState([]);
 
@@ -71,6 +73,16 @@ export default function Home(){
     const handleSeachInputChange = (event) => {
         setSearchedEmployees(event.target.value)
     };
+    // const handleEmployeeClick = (event) => {
+    //     if (event.target.checked) {
+    //         const newSelecteds = props.rows.map((n) => n.name);
+    //         setSelected(newSelecteds);
+    //         return;
+    //       }
+    //       setSelected([])
+    //     console.log(event.target.value)
+    //     setClickedEmployees(event.target.value)
+    // };
 
     return(
         
@@ -90,8 +102,11 @@ export default function Home(){
                          return true;
                         })} />
                 </Grid>
+                {/* <Grid item className={classes.mainContainer}>
+                    <FancyCard employeeFristName={} employeeLastName={} employeeEmail={} employeePhone={}/>
+                </Grid> */}
                 <Grid item className={classes.mainContainer}>
-                    <Map employees={employees} center={coordinates} />
+                    {/* <Map employees={employees} center={coordinates} /> */}
                 </Grid>
             </Grid>
             <AppFooter/>

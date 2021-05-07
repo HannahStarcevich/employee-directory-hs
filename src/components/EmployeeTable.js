@@ -13,14 +13,6 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import Checkbox from '@material-ui/core/Checkbox';
-import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
-import ArchiveIcon from '@material-ui/icons/Archive';
-import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
-import {NavLink} from "react-router-dom";
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -48,7 +40,7 @@ function stableSort(array, comparator) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-// lable column headers
+// column headers, passed through as props later
 const headCells = [
   { id: 'firstName', numeric: false, disablePadding: false, label: 'First Name' },
   { id: 'lastName', numeric: false, disablePadding: false, label: 'Last Name' },
@@ -60,7 +52,7 @@ const headCells = [
 ];
 
 function EnhancedTableHead(props) {
-  const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
+  const { classes, order, orderBy, onRequestSort } = props;
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
@@ -68,19 +60,10 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
-          <Checkbox
-            indeterminate={numSelected > 0 && numSelected < rowCount}
-            checked={rowCount > 0 && numSelected === rowCount}
-            onChange={onSelectAllClick}
-            inputProps={{ 'aria-label': 'select all rows' }}
-          />
-        </TableCell>
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            // align={headCell.numeric ? 'right' : 'left'}
-            padding={headCell.disablePadding ? 'none' : 'default'}
+            padding='default'
             sortDirection={orderBy === headCell.id ? order : false}
           >
             <TableSortLabel
@@ -132,6 +115,7 @@ const useToolbarStyles = makeStyles((theme) => ({
   },
 }));
 
+//header of table - if employee is selected display their name (displays the number now)
 const EnhancedTableToolbar = (props) => {
   const classes = useToolbarStyles();
   const { numSelected } = props;
@@ -151,22 +135,6 @@ const EnhancedTableToolbar = (props) => {
           Employee Directory
         </Typography>
       )}
-
-      {numSelected > 0 ? (
-        <React.Fragment>
-          <Tooltip title="Archive">
-            <IconButton aria-label="Archive">
-              <ArchiveIcon />
-            </IconButton>
-          </Tooltip>
-
-          <Tooltip title="Approve">
-            <IconButton aria-label="Approve">
-              <DoneOutlineIcon />
-            </IconButton>
-        </Tooltip>
-      </React.Fragment>
-      ) : null}
     </Toolbar>
   );
 };
@@ -205,8 +173,7 @@ export default function UserTable(props) {
   const [orderBy, setOrderBy] = React.useState('calories');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(true);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(8);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -214,14 +181,14 @@ export default function UserTable(props) {
     setOrderBy(property);
   };
 
-  const handleSelectAllClick = (event) => {
-    if (event.target.checked) {
-      const newSelecteds = props.rows.map((n) => n.name);
-      setSelected(newSelecteds);
-      return;
-    }
-    setSelected([]);
-  };
+  // const handleSelectAllClick = (event) => {
+  //   if (event.target.checked) {
+  //     const newSelecteds = props.rows.map((n) => n.name);
+  //     setSelected(newSelecteds);
+  //     return;
+  //   }
+  //   setSelected([]);
+  // };
 
   const handleClick = (event, name) => {
     const selectedIndex = selected.indexOf(name);
@@ -264,7 +231,7 @@ export default function UserTable(props) {
           <Table
             className={classes.table}
             aria-labelledby="tableTitle"
-            size={dense ? 'small' : 'medium'}
+            size='small'
             aria-label="enhanced table"
           >
             <EnhancedTableHead
@@ -272,7 +239,7 @@ export default function UserTable(props) {
               numSelected={selected.length}
               order={order}
               orderBy={orderBy}
-              onSelectAllClick={handleSelectAllClick}
+              // onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
               rowCount={props.rows.length}
             />
@@ -285,7 +252,6 @@ export default function UserTable(props) {
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
-                    // <NavLink style={{textDecoration: "none"}} to={`/userView/${employeeId}`}>
                     <TableRow
                       hover
                       onClick={(event) => handleClick(event, employeeId)}
@@ -295,14 +261,7 @@ export default function UserTable(props) {
                       key={employeeId}
                       selected={isItemSelected}
                     >
-                      <TableCell padding="checkbox">
-                        <Checkbox
-                          checked={isItemSelected}
-                          inputProps={{ 'aria-labelledby': labelId }}
-                        />
-                      </TableCell>
-                      
-                      <TableCell component="th" id={labelId} scope="row" padding="none">{row?.name.first}</TableCell>
+                      <TableCell component="th" id={labelId} scope="row">{row?.name.first}</TableCell>
                       <TableCell >{row?.name.last}</TableCell>
                       <TableCell >{row?.email}</TableCell>
                       <TableCell >{row?.phone}</TableCell>
@@ -322,7 +281,7 @@ export default function UserTable(props) {
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
+          rowsPerPageOptions={[10, 15, 25]}
           component="div"
           count={props.rows.length}
           rowsPerPage={rowsPerPage}
