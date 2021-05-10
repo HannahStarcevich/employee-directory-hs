@@ -174,7 +174,7 @@ export default function UserTable(props) {
   const [orderBy, setOrderBy] = React.useState('calories');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -195,17 +195,30 @@ export default function UserTable(props) {
 
     let newSelected = [name];
 
-    store.dispatch({
-      type: 'CHANGE_EMPLOYEE',
-      payload: {
-          ...store.getState().employee,
-          employee: newSelected
-      }
-  });
-  localStorage.setItem('employee', JSON.stringify(newSelected))
-
-    console.log(newSelected)
+    // change state of new selected employee
+      store.dispatch({
+        type: 'CHANGE_EMPLOYEE',
+        payload: {
+            ...store.getState().employee,
+            title: newSelected[0].name.title,
+            firstName: newSelected[0].name.first,
+            lastName: newSelected[0].name.last,
+            city: newSelected[0].location.city,
+            state: newSelected[0].location.state,
+            country: newSelected[0].location.country,
+            lat: parseFloat(newSelected[0].location.coordinates.latitude),
+            lng: parseFloat(newSelected[0].location.coordinates.longitude),
+            email: newSelected[0].email,
+            phone: newSelected[0].phone,
+            age: newSelected[0].dob.age,
+            tenure: newSelected[0].registered.age,
+            picture: newSelected[0].picture.large,
+        }
+    });
+    localStorage.setItem('employee', JSON.stringify(newSelected))
+ 
     setSelected(newSelected);
+
   };
 
   const handleChangePage = (event, newPage) => {
@@ -280,7 +293,7 @@ export default function UserTable(props) {
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[10, 15, 25]}
+          rowsPerPageOptions={[5, 10, 15]}
           component="div"
           count={props.rows.length}
           rowsPerPage={rowsPerPage}

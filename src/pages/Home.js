@@ -9,6 +9,12 @@ import AppAppBar from '../components/AppAppBar';
 import AppFooter from '../components/AppFooter';
 import ProductHero from '../components/ProductHero';
 import SearchBar from '../components/SearchBar';
+import Card from '../components/Card';
+import Map from '../components/Map';
+import { Typography } from '@material-ui/core';
+import { connect } from 'react-redux';
+import store from '../config/store'
+
 
 const useStyles= makeStyles((theme) => ({
     mainContainer: {
@@ -28,6 +34,12 @@ const useStyles= makeStyles((theme) => ({
             marginLeft: "3.5em"
         }
     },
+    cardContainer: {
+        flexGrow: '1', 
+        padding: theme.spacing(3),
+        flexWrap: "wrap",
+        direction: "row"
+    }
 }))
 
 // // set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
@@ -38,7 +50,7 @@ const useStyles= makeStyles((theme) => ({
 // Geocode.setRegion("us");
 // Geocode.setLocationType("ROOFTOP");
 
-export default function Home(){
+const Home = (props) => {
 
     const classes = useStyles();
 
@@ -72,7 +84,6 @@ export default function Home(){
             <Grid container>
                 <Grid item item className={classes.mainContainer}>
                     <SearchBar searchEmployee={searchEmployee} onChange={handleSeachInputChange}/>
-                    {/* <MultiSelectChips title={}/> */}
                 </Grid>
                 <Grid item className={classes.mainContainer}>
                      <EmployeeTable rows={employees.filter( (employee) => {
@@ -82,9 +93,25 @@ export default function Home(){
                          return true;
                         })} />
                 </Grid>
+                {props.firstName ? (
+                    <Grid container className={classes.cardContainer} justify="center">
+                        <Grid item xs={10} s={10} m={4} lg={4}>
+                            <Card />
+                        </Grid>
+                        <Grid item xs={10} s={10} m={6} lg={8}>
+                            <Map center={coordinates}/>
+                        </Grid>
+                    </Grid>
+                ): null}
             </Grid>
             <AppFooter/>
         </React.Fragment>
     )
 }
+const mapStateToProps = (state) => {
+    return {
+        ...state.employee
+    }
+};
 
+export default connect(mapStateToProps)(Home);

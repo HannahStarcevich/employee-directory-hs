@@ -3,6 +3,8 @@ import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-map
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import CardMedia from '@material-ui/core/CardMedia';
 import {NavLink} from "react-router-dom";
+import { connect } from 'react-redux';
+import Typography from '@material-ui/core/Typography';
 
 const containerStyle = {
   width: '80%',
@@ -12,19 +14,29 @@ const containerStyle = {
 
 const useStyles=makeStyles(theme => ({
   markerPhotos: {
-    width: '70px',
-    height: '50px',
-    borderRadius: 8,
-    boxShadow: '0 3px 10px 0 #BDC9D7',
+    marginLeft: "0.75em",
+    marginTop: "0.5em",
+    maxWidth: "1px",
+    minWidth: "1px",
+    maxHeight: '20%',
+    minHeight: '20%',
+    borderRadius: 4, 
+    boxShadow: '0 4px 10px 0 #BDC9D7'
   },
   cardText: {
-    marginTop: "5%",
-    marginBottom: "5%",
-  }
+    marginTop: "0.25em",
+  },
+  // infoWindow: {
+  //   maxWidth: "20px",
+  //   minWidth: "20px",
+  //   maxHeight: '80%',
+  //   minHeight: '80%',
+  // }
 }))
 
 function Map(props) {
     
+  
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: 'AIzaSyApR86z8S3ck-lPN02QTW_Prabc2SGCL4Q',
@@ -52,41 +64,45 @@ function Map(props) {
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={props.center}
-        zoom={7}
+        zoom={4}
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
-        {/* component used on DogDossiersAll and ManageASFUsers pages - set up to handle props / object passed for dogs and users */}
-        {/* {props.displaySubjects?.map((dogOrUser) => (
-        
         <Marker 
-          key={dogOrUser?.id}
-          position={dogOrUser?.coordinates} 
-          onClick={dogOrUser?.onMarkerClick}>
-            <NavLink gutterBottom style={{textDecoration: "none"}} to={dogOrUser?.name ? (`/dogView/${dogOrUser.id}`): (`/userView/${dogOrUser.id}`)}>
-                <InfoWindow 
-                  key={dogOrUser?.id}
-                  position={dogOrUser?.coordinates}>
+          key={props.email}
+          position={{lat: props.lat, lng: props.lng}} 
+          onClick={props.onMarkerClick}>
+  
+                <InfoWindow
+                  key={props.id}
+                  position={{lat: props.lat, lng: props.lng}}
+                  className={classes.infoWindow}>
                     <div>
                       <CardMedia 
                         component="img"
                         alt="profile photo"
-                        height="100%"
-                        image={dogOrUser?.DogPhotos?.[0]?.url || dogOrUser?.photoUrl}
+                        image={props.picture}
                         className={classes.markerPhotos}/>
-                      <h3 className={classes.cardText} >{dogOrUser?.name || dogOrUser?.firstName && dogOrUser?.lastName}</h3>
-                      <p className={classes.cardText} >{dogOrUser?.DogStatus?.name}</p>
-                      <p className={classes.cardText} >{dogOrUser?.email}</p>
-                      <p className={classes.cardText} >{dogOrUser?.phone}</p>
+                      <Typography variant="theme.h5" component="h5" className={classes.cardText}>
+                        {props.city}, {props.state}
+                      </Typography>
+                      <Typography gutterBottom variant="h5" component="h5" className={classes.cardText}>
+                        {props.country}
+                      </Typography>
                     </div>
                 </InfoWindow>
-              </NavLink>
+ 
           </Marker>
-          )
-        )} */}
+        )
         
       </GoogleMap>
   ) : <></>
 }
 
-export default React.memo(Map)
+const mapStateToProps = (state) => {
+  return {
+      ...state.employee
+  }
+};
+
+export default connect(mapStateToProps)(React.memo(Map))

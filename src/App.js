@@ -3,8 +3,9 @@ import Home from "./pages/Home";
 import { ThemeProvider } from '@material-ui/core/styles';
 import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
 import theme from "./Theme"
-import ResponsiveDrawer from "./components/ResponsiveDrawer";
 import store from './config/store'
+import { Provider } from "react-redux"
+// import context from "./config/reducers/context";
 
 export default function App() {
 
@@ -23,12 +24,13 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <ResponsiveDrawer />
-          <Switch>
-            <Route exact path="/"><Home /></Route>
-          </Switch>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+            <Switch>
+              <Route exact path="/"><Home /></Route>
+            </Switch>
+        </BrowserRouter>
+      </Provider>
     </ThemeProvider>
   );
 }

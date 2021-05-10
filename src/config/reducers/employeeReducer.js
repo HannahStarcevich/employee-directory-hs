@@ -1,5 +1,18 @@
 const initialState = {
-    employee: []
+    title: '',
+    firstName: '',
+    lastName: '', 
+    city: '', 
+    state: '', 
+    coutnry: '', 
+    lat: '', 
+    lng: '', 
+    email: '', 
+    phone: '', 
+    age: '', 
+    tenure: '', 
+    picture: '', 
+
 };
 
 const employeeReducer = (state = initialState, action) => {
