@@ -89,7 +89,7 @@ EnhancedTableHead.propTypes = {
   classes: PropTypes.object.isRequired,
   numSelected: PropTypes.number.isRequired,
   onRequestSort: PropTypes.func.isRequired,
-  onSelectAllClick: PropTypes.func.isRequired,
+  // onSelectAllClick: PropTypes.func.isRequired,
   order: PropTypes.oneOf(['asc', 'desc']).isRequired,
   orderBy: PropTypes.string.isRequired,
   rowCount: PropTypes.number.isRequired,
@@ -118,7 +118,7 @@ const useToolbarStyles = makeStyles((theme) => ({
 //header of table - if employee is selected display their name (displays the number now)
 const EnhancedTableToolbar = (props) => {
   const classes = useToolbarStyles();
-  const { numSelected } = props;
+  const { numSelected, selected } = props;
 
   return (
     <Toolbar
@@ -128,7 +128,7 @@ const EnhancedTableToolbar = (props) => {
     >
       {numSelected > 0 ? (
         <Typography className={classes.title} color="inherit" variant="subtitle1" component="div">
-          {numSelected} selected
+          You Selected {selected[0].name.first} 
         </Typography>
       ) : (
         <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
@@ -173,7 +173,7 @@ export default function UserTable(props) {
   const [orderBy, setOrderBy] = React.useState('calories');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(8);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -191,22 +191,10 @@ export default function UserTable(props) {
   // };
 
   const handleClick = (event, name) => {
-    const selectedIndex = selected.indexOf(name);
-    let newSelected = [];
 
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
-      );
-    }
+    let newSelected = [name];
 
+    console.log(newSelected)
     setSelected(newSelected);
   };
 
@@ -226,7 +214,7 @@ export default function UserTable(props) {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        <EnhancedTableToolbar numSelected={selected.length} selected={selected}/>
         <TableContainer>
           <Table
             className={classes.table}
@@ -237,6 +225,7 @@ export default function UserTable(props) {
             <EnhancedTableHead
               classes={classes}
               numSelected={selected.length}
+              selected={selected}
               order={order}
               orderBy={orderBy}
               // onSelectAllClick={handleSelectAllClick}
@@ -247,18 +236,18 @@ export default function UserTable(props) {
               {stableSort(props.rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                const employeeId=row.id.value
-                  const isItemSelected = isSelected(employeeId);
+                
+                  const isItemSelected = isSelected(row);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, employeeId)}
+                      onClick={(event) => handleClick(event, row)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={employeeId}
+                      key={row.email}
                       selected={isItemSelected}
                     >
                       <TableCell component="th" id={labelId} scope="row">{row?.name.first}</TableCell>

@@ -73,16 +73,6 @@ export default function Home(){
     const handleSeachInputChange = (event) => {
         setSearchedEmployees(event.target.value)
     };
-    // const handleEmployeeClick = (event) => {
-    //     if (event.target.checked) {
-    //         const newSelecteds = props.rows.map((n) => n.name);
-    //         setSelected(newSelecteds);
-    //         return;
-    //       }
-    //       setSelected([])
-    //     console.log(event.target.value)
-    //     setClickedEmployees(event.target.value)
-    // };
 
     return(
         

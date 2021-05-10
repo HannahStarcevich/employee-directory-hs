@@ -50,7 +50,7 @@ function ProductHero(props) {
         component="a"
         href="/premium-themes/onepirate/sign-up/"
       >
-        Seach
+        Search
       </Button>
       {/* <Typography variant="body2" color="inherit" className={classes.more}>
         Discover the experience
