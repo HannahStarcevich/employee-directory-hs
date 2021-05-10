@@ -8,34 +8,33 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
-import store from '../config/store'
 
 const useStyles = makeStyles(theme => ({
     margin: theme.spacing(20),
-  
-  root: {
-    maxWidth: "60%",
-    minWidth: "60%",
-    maxHeight: '90%',
-    minHeight: '90%',
-    marginTop: theme.spacing(2),
-    flex: "wrap",
-    border: '1px solid',
-    borderColor: theme.palette.orange.main,
-    borderRadius: 2,
-    transition: '0.4s',
-    boxShadow: '0 8px 16px 0 #BDC9D7',
-  },
-  media: {
-    marginLeft: "4.75em",
-    marginTop: "1.5em",
-    maxWidth: "60%",
-    minWidth: "60%",
-    maxHeight: '300px',
-    minHeight: '300px',
-    borderRadius: 4, 
-    boxShadow: '0 4px 10px 0 #BDC9D7'
-  },
+    marginLeft: "40em",
+    root: {
+        maxWidth: "60%",
+        minWidth: "60%",
+        maxHeight: '90%',
+        minHeight: '90%',
+        marginTop: theme.spacing(2),
+        flex: "wrap",
+        border: '1px solid',
+        borderColor: theme.palette.orange.main,
+        borderRadius: 2,
+        transition: '0.4s',
+        boxShadow: '0 8px 16px 0 #BDC9D7',
+    },
+    media: {
+        marginLeft: "4.75em",
+        marginTop: "1.5em",
+        maxWidth: "60%",
+        minWidth: "60%",
+        maxHeight: '300px',
+        minHeight: '300px',
+        borderRadius: 4, 
+        boxShadow: '0 4px 10px 0 #BDC9D7'
+    },
 }));
 
 const MediaCard = (props) => {
@@ -60,7 +59,7 @@ const MediaCard = (props) => {
             Cell: {props.phone}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="h3">
-            Tenure: {props.tenure}
+            Tenure: {props.tenure} years
           </Typography>
         </CardContent>
       </CardActionArea>

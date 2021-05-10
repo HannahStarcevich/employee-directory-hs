@@ -8,30 +8,30 @@ import Typography from '@material-ui/core/Typography';
 
 const containerStyle = {
   width: '80%',
-  height: '500px',
-  marginLeft: "3em"
+  height: '400px',
+  marginLeft: "5em"
 };
 
 const useStyles=makeStyles(theme => ({
   markerPhotos: {
     marginLeft: "0.75em",
     marginTop: "0.5em",
-    maxWidth: "1px",
-    minWidth: "1px",
-    maxHeight: '20%',
-    minHeight: '20%',
+    maxWidth: "2px",
+    minWidth: "2px",
+    // maxHeight: '10%',
+    // minHeight: '10%',
     borderRadius: 4, 
     boxShadow: '0 4px 10px 0 #BDC9D7'
   },
   cardText: {
     marginTop: "0.25em",
   },
-  // infoWindow: {
-  //   maxWidth: "20px",
-  //   minWidth: "20px",
-  //   maxHeight: '80%',
-  //   minHeight: '80%',
-  // }
+  infoWindow: {
+    maxWidth: "20px",
+    minWidth: "20px",
+    maxHeight: '80%',
+    minHeight: '80%',
+  }
 }))
 
 function Map(props) {
@@ -81,9 +81,10 @@ function Map(props) {
                       <CardMedia 
                         component="img"
                         alt="profile photo"
+                        height="80"
                         image={props.picture}
                         className={classes.markerPhotos}/>
-                      <Typography variant="theme.h5" component="h5" className={classes.cardText}>
+                      <Typography variant="theme" component="h5" className={classes.cardText}>
                         {props.city}, {props.state}
                       </Typography>
                       <Typography gutterBottom variant="h5" component="h5" className={classes.cardText}>
@@ -93,8 +94,6 @@ function Map(props) {
                 </InfoWindow>
  
           </Marker>
-        )
-        
       </GoogleMap>
   ) : <></>
 }

@@ -4,17 +4,14 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import React, { useState, useEffect } from "react";
 import API from '../utils/API';
 import EmployeeTable from "../components/EmployeeTable"
-// import Geocode from "react-geocode";
+import Geocode from "react-geocode";
 import AppAppBar from '../components/AppAppBar';
 import AppFooter from '../components/AppFooter';
 import ProductHero from '../components/ProductHero';
 import SearchBar from '../components/SearchBar';
 import Card from '../components/Card';
 import Map from '../components/Map';
-import { Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
-import store from '../config/store'
-
 
 const useStyles= makeStyles((theme) => ({
     mainContainer: {
@@ -35,20 +32,23 @@ const useStyles= makeStyles((theme) => ({
         }
     },
     cardContainer: {
-        flexGrow: '1', 
+        flex: 1,
+        display: 'flex',
         padding: theme.spacing(3),
-        flexWrap: "wrap",
-        direction: "row"
+        justifyContent: 'space-between',
+    }, 
+    card: {
+        marginLeft: "10em",
     }
 }))
 
-// // set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
-// Geocode.setApiKey(process.env.GOOGLE_MAPS_API_KEY);
+// set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
+Geocode.setApiKey(process.env.GOOGLE_MAPS_API_KEY);
 
-// // set response language. Defaults to english.
-// Geocode.setLanguage("en");
-// Geocode.setRegion("us");
-// Geocode.setLocationType("ROOFTOP");
+// set response language. Defaults to english.
+Geocode.setLanguage("en");
+Geocode.setRegion("us");
+Geocode.setLocationType("ROOFTOP");
 
 const Home = (props) => {
 
@@ -56,9 +56,7 @@ const Home = (props) => {
 
     const [employees, setEmployees] = React.useState([]);
     const [searchEmployee, setSearchedEmployees] = React.useState('');
-    const [clickEmployee, setClickedEmployees] = React.useState({});
     const [coordinates, setCoordinates] = React.useState({});
-    const [countries, setCountries] = React.useState([]);
 
     useEffect(() => {
         loadEmployees()
@@ -94,9 +92,9 @@ const Home = (props) => {
                         })} />
                 </Grid>
                 {props.firstName ? (
-                    <Grid container className={classes.cardContainer} justify="center">
-                        <Grid item xs={10} s={10} m={4} lg={4}>
-                            <Card />
+                    <Grid container className={classes.cardContainer}>
+                        <Grid item xs={10} s={10} m={4} lg={4}  >
+                            <Card className={classes.cardContainer}/>
                         </Grid>
                         <Grid item xs={10} s={10} m={6} lg={8}>
                             <Map center={coordinates}/>
