@@ -2,22 +2,13 @@
 import Grid from '@material-ui/core/Grid';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import React, { useState, useEffect } from "react";
-import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
-import Divider from "@material-ui/core/Divider";
 import API from '../utils/API';
 import EmployeeTable from "../components/EmployeeTable"
-import Map from "../components/Map"
-import AppBar from "../components/AppAppBar"
-import Geocode from "react-geocode";
+// import Geocode from "react-geocode";
 import AppAppBar from '../components/AppAppBar';
 import AppFooter from '../components/AppFooter';
-import { RecentActorsSharp } from '@material-ui/icons';
 import ProductHero from '../components/ProductHero';
 import SearchBar from '../components/SearchBar';
-import MultiSelectChips from '../components/MultiSelectChips';
-import FancyCard from '../components/FancyCard';
-
 
 const useStyles= makeStyles((theme) => ({
     mainContainer: {
@@ -39,13 +30,13 @@ const useStyles= makeStyles((theme) => ({
     },
 }))
 
-// set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
-Geocode.setApiKey(process.env.GOOGLE_MAPS_API_KEY);
+// // set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
+// Geocode.setApiKey(process.env.GOOGLE_MAPS_API_KEY);
 
-// set response language. Defaults to english.
-Geocode.setLanguage("en");
-Geocode.setRegion("us");
-Geocode.setLocationType("ROOFTOP");
+// // set response language. Defaults to english.
+// Geocode.setLanguage("en");
+// Geocode.setRegion("us");
+// Geocode.setLocationType("ROOFTOP");
 
 export default function Home(){
 
@@ -74,8 +65,7 @@ export default function Home(){
         setSearchedEmployees(event.target.value)
     };
 
-    return(
-        
+    return( 
         <React.Fragment>
             <AppAppBar />
             <ProductHero/>
@@ -91,12 +81,6 @@ export default function Home(){
                          }
                          return true;
                         })} />
-                </Grid>
-                {/* <Grid item className={classes.mainContainer}>
-                    <FancyCard employeeFristName={} employeeLastName={} employeeEmail={} employeePhone={}/>
-                </Grid> */}
-                <Grid item className={classes.mainContainer}>
-                    {/* <Map employees={employees} center={coordinates} /> */}
                 </Grid>
             </Grid>
             <AppFooter/>

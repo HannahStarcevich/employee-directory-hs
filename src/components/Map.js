@@ -5,8 +5,9 @@ import CardMedia from '@material-ui/core/CardMedia';
 import {NavLink} from "react-router-dom";
 
 const containerStyle = {
-  width: '100%',
-  height: '400px'
+  width: '80%',
+  height: '500px',
+  marginLeft: "3em"
 };
 
 const useStyles=makeStyles(theme => ({

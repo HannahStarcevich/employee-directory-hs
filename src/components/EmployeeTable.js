@@ -13,6 +13,7 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
+import store from '../config/store';
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -193,6 +194,15 @@ export default function UserTable(props) {
   const handleClick = (event, name) => {
 
     let newSelected = [name];
+
+    store.dispatch({
+      type: 'CHANGE_EMPLOYEE',
+      payload: {
+          ...store.getState().employee,
+          employee: newSelected
+      }
+  });
+  localStorage.setItem('employee', JSON.stringify(newSelected))
 
     console.log(newSelected)
     setSelected(newSelected);
