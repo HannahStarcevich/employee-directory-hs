@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: theme.palette.warning.main,
+    color: theme.palette.primary.dark,
     marginRight: theme.spacing(1),
     '&:hover': {
       backgroundColor: theme.palette.warning.dark,
@@ -56,22 +56,8 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(0.5),
     paddingBottom: theme.spacing(0.5),
   },
-  language: {
-    marginTop: theme.spacing(1),
-    width: 150,
-  },
 }));
 
-const LANGUAGES = [
-  {
-    code: 'en-US',
-    name: 'English',
-  },
-  {
-    code: 'fr-FR',
-    name: 'Français',
-  },
-];
 
 export default function AppFooter() {
   const classes = useStyles();
@@ -89,11 +75,9 @@ export default function AppFooter() {
               spacing={2}
             >
               <Grid item className={classes.icons}>
-                {/* <a href="https://material-ui.com/" className={classes.icon}> */}
-                  <LinkedInIcon/> {/* </a> */}
-                {/* <a href="https://twitter.com/MaterialUI" className={classes.icon}>
-                  <img src="/static/themes/onepirate/appFooterTwitter.png" alt="Twitter" />
-                </a> */}
+                <a href="https://www.linkedin.com/in/hannah-starcevich/" className={classes.icon}>
+                  <LinkedInIcon/> </a>
+                
               </Grid>
               <Grid item>
                 <Copyright />

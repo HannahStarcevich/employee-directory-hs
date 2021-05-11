@@ -41,7 +41,7 @@ const MediaCard = (props) => {
 
   return (
     <Card className={classes.root}>
-      <CardActionArea>
+      {/* <CardActionArea> */}
         <CardMedia
           className={classes.media}
           image={props.picture}
@@ -61,7 +61,7 @@ const MediaCard = (props) => {
             Tenure: {props.tenure} years
           </Typography>
         </CardContent>
-      </CardActionArea>
+      {/* </CardActionArea> */}
       <CardActions>
         <Button size="small" color="secondary" onClick={event =>  window.location.href=`mailto:${props.email}`}>
           Reach Out
