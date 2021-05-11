@@ -7,6 +7,7 @@ import Container from '@material-ui/core/Container';
 const styles = (theme) => ({
   root: {
     color: theme.palette.common.white,
+    marginTop: theme.spacing(-1),
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
@@ -17,7 +18,7 @@ const styles = (theme) => ({
     },
   },
   container: {
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(5),
     marginBottom: theme.spacing(14),
     display: 'flex',
     flexDirection: 'column',

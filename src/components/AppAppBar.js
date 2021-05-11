@@ -5,13 +5,19 @@ import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import AppBar from './AppBar';
-import Toolbar, { styles as toolbarStyles } from './Toolbar';
+// import Toolbar, { styles as toolbarStyles } from './Toolbar';
+import Toolbar from '@material-ui/core/Toolbar';
 
 const styles = (theme) => ({
   title: {
     fontSize: 24,
   },
-  placeholder: toolbarStyles(theme).root,
+  placeholder: {
+    height: 64,
+    [theme.breakpoints.up('sm')]: {
+      height: 70,
+    },
+  },
   toolbar: {
     justifyContent: 'space-between',
   },
