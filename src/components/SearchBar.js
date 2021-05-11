@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField'
 
 export default function SearchBar(props) {
   return (
-    <div>
+    <div id="section1">
         <form noValidate autoComplete="off" onSubmit={(event) => event.preventDefault()}>
             <TextField id="outlined-basic" label="Search" variant="outlined" fullWidth onChange={props.onChange}/>
         </form>

@@ -14,13 +14,15 @@ const useStyles = makeStyles(theme => ({
         maxWidth: "90%",
         minWidth: "90%",
         maxHeight: '500px',
-        minHeight: '500px%',
         flex: "wrap",
         border: '1px solid',
         borderColor: theme.palette.orange.main,
         borderRadius: 2,
         transition: '0.4s',
         boxShadow: '0 8px 16px 0 #BDC9D7',
+        [theme.breakpoints.down("sm")]:{
+          width: "100%",
+        }
     },
     media: {
       marginTop: theme.spacing(3),

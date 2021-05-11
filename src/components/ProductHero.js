@@ -21,7 +21,7 @@ const styles = (theme) => ({
   h5: {
     marginBottom: theme.spacing(5),
     marginTop: theme.spacing(4),
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.down('sm')]: {
       marginTop: theme.spacing(10),
     },
   },

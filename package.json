@@ -54,9 +54,9 @@
       "last 1 safari version"
     ]
   },
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "description": "This project is a mock employee database created with [React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
   "keywords": [],
-  "author": "",
+  "author": "Hannah Starcevich",
   "license": "ISC"
 }

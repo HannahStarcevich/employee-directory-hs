@@ -30,14 +30,24 @@ const useStyles= makeStyles((theme) => ({
             width: "90%"
         },
         [theme.breakpoints.down("xs")]:{
-            spacing: theme.spacing(2),
-            // marginLeft: "3.5em"
+            spacing: theme.spacing(1),
+            marginLeft: 5, 
+            width: "90%"
         }
     },
     card: {
-        marginLeft: "4em",
         marginTop: "2em",
         marginBottom: "2em",
+        justifyContent: "space-evenly",
+        [theme.breakpoints.down("sm")]:{
+            marginLeft: 5,
+            marginTop: 5,
+            marginBottom: 5,
+            width: "100%",
+            flexGrow: '1', 
+            flexWrap: "wrap",
+            direction: "row"
+        },
     },
     paper: {
         width: "90%",
@@ -46,16 +56,18 @@ const useStyles= makeStyles((theme) => ({
         color: theme.palette.orange.main,
         backgroundColor: "#e1e1e1",
         marginBottom: "2em",
+        justifyContent: "space-evenly",
+        [theme.breakpoints.down("sm")]:{
+            spacing: theme.spacing(2),
+            marginLeft: 5,
+            width: "90%",
+            flexGrow: '1', 
+            padding: theme.spacing(3),
+            flexWrap: "wrap",
+            direction: "row"
+        },
     }
 }))
-
-// // set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
-// Geocode.setApiKey(process.env.GOOGLE_MAPS_API_KEY);
-
-// // set response language. Defaults to english.
-// Geocode.setLanguage("en");
-// Geocode.setRegion("us");
-// Geocode.setLocationType("ROOFTOP");
 
 const Home = (props) => {
 

@@ -227,7 +227,7 @@ export default function UserTable(props) {
 
   return (
     <div className={classes.root}>
-      <Paper className={classes.paper} id="section1">
+      <Paper className={classes.paper} >
         <EnhancedTableToolbar numSelected={selected.length} selected={selected}/>
         <TableContainer>
           <Table

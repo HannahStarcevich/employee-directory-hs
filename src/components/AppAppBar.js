@@ -11,6 +11,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 const styles = (theme) => ({
   title: {
     fontSize: 24,
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 12,
+    },
   },
   placeholder: {
     height: 64,
@@ -37,6 +40,7 @@ const styles = (theme) => ({
   linkSecondary: {
     color: theme.palette.secondary.main,
   },
+  
 });
 
 function AppAppBar(props) {
