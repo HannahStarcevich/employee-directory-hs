@@ -42,16 +42,18 @@ function ProductHero(props) {
       <Typography color="inherit" align="center" variant="h5" className={classes.h5}>
         Find coworkers near you, reach out and schedule a networking event. 
       </Typography>
+ 
       <Button
         color="secondary"
         variant="contained"
         size="large"
         className={classes.button}
         component="a"
-        href="/premium-themes/onepirate/sign-up/"
+        href="/search"
       >
         Search
       </Button>
+
       {/* <Typography variant="body2" color="inherit" className={classes.more}>
         Discover the experience
       </Typography> */}

@@ -12,6 +12,7 @@ import SearchBar from '../components/SearchBar';
 import Card from '../components/Card';
 import Map from '../components/Map';
 import { connect } from 'react-redux';
+import { Route } from 'react-router';
 
 const useStyles= makeStyles((theme) => ({
     mainContainer: {
@@ -81,7 +82,9 @@ const Home = (props) => {
             <ProductHero/>
             <Grid container>
                 <Grid item item className={classes.mainContainer}>
-                    <SearchBar searchEmployee={searchEmployee} onChange={handleSeachInputChange}/>
+
+                    <SearchBar searchEmployee={searchEmployee} onChange={handleSeachInputChange} id="/yourAnchorTag"/>
+
                 </Grid>
                 <Grid item className={classes.mainContainer}>
                      <EmployeeTable rows={employees.filter( (employee) => {

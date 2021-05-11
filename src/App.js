@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Home from "./pages/Home";
 import { ThemeProvider } from '@material-ui/core/styles';
-import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 import theme from "./Theme"
 import store from './config/store'
 import { Provider } from "react-redux"
-// import context from "./config/reducers/context";
+import SearchBar from "./components/SearchBar";
 
 export default function App() {
 
