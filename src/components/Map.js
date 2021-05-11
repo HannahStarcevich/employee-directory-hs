@@ -7,9 +7,13 @@ import { connect } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 
 const containerStyle = {
-  width: '80%',
-  height: '400px',
-  marginLeft: "5em"
+  width: '100%',
+  height: '500px',
+  marginTop: "2em",
+  border: '1px solid',
+  borderRadius: 2,
+  transition: '0.4s',
+  boxShadow: '0 8px 16px 0 #BDC9D7',
 };
 
 const useStyles=makeStyles(theme => ({
@@ -18,8 +22,6 @@ const useStyles=makeStyles(theme => ({
     marginTop: "0.5em",
     maxWidth: "2px",
     minWidth: "2px",
-    // maxHeight: '10%',
-    // minHeight: '10%',
     borderRadius: 4, 
     boxShadow: '0 4px 10px 0 #BDC9D7'
   },

@@ -59,7 +59,7 @@ function EnhancedTableHead(props) {
   };
 
   return (
-    <TableHead>
+    <TableHead id="section1">
       <TableRow>
         {headCells.map((headCell) => (
           <TableCell

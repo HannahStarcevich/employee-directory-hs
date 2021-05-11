@@ -5,7 +5,6 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import theme from "./Theme"
 import store from './config/store'
 import { Provider } from "react-redux"
-import SearchBar from "./components/SearchBar";
 
 export default function App() {
 

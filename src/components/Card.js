@@ -10,14 +10,12 @@ import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
-    margin: theme.spacing(20),
-    marginLeft: "40em",
+  
     root: {
-        maxWidth: "60%",
-        minWidth: "60%",
-        maxHeight: '90%',
-        minHeight: '90%',
-        marginTop: theme.spacing(2),
+        maxWidth: "90%",
+        minWidth: "90%",
+        maxHeight: '500px',
+        minHeight: '500px%',
         flex: "wrap",
         border: '1px solid',
         borderColor: theme.palette.orange.main,
@@ -26,10 +24,11 @@ const useStyles = makeStyles(theme => ({
         boxShadow: '0 8px 16px 0 #BDC9D7',
     },
     media: {
-        marginLeft: "4.75em",
-        marginTop: "1.5em",
-        maxWidth: "60%",
-        minWidth: "60%",
+      marginTop: theme.spacing(3),
+      marginLeft: theme.spacing(5),
+      marginBottom: "0em",
+        maxWidth: "70%",
+        minWidth: "70%",
         maxHeight: '300px',
         minHeight: '300px',
         borderRadius: 4, 
@@ -64,7 +63,7 @@ const MediaCard = (props) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
+        <Button size="small" color="secondary" onClick={event =>  window.location.href=`mailto:${props.email}`}>
           Reach Out
         </Button>
       </CardActions>

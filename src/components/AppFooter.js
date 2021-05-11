@@ -25,8 +25,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.orange.main,
   },
   container: {
-    marginTop: theme.spacing(8),
-    marginBottom: theme.spacing(8),
+    marginTop: theme.spacing(5),
+    marginBottom: theme.spacing(5),
     display: 'flex',
   },
   iconsWrapper: {
@@ -102,56 +102,27 @@ export default function AppFooter() {
           </Grid>
           <Grid item xs={6} sm={4} md={2}>
             <Typography variant="h6" marked="left" gutterBottom>
-              Legal
+              About This Site
             </Typography>
             <ul className={classes.list}>
               <li className={classes.listItem}>
-                <Link href="">Terms</Link>
-              </li>
-              <li className={classes.listItem}>
-                <Link href="">Privacy</Link>
+                <Link href="https://github.com/HannahStarcevich/employee-directory-hs">GitHub</Link>
               </li>
             </ul>
           </Grid>
           <Grid item xs={6} sm={8} md={4}>
             <Typography variant="h6" marked="left" gutterBottom>
-              Language
+              Designer
             </Typography>
-            <TextField
-              select
-              SelectProps={{
-                native: true,
-              }}
-              className={classes.language}
-            >
-              {LANGUAGES.map((language) => (
-                <option value={language.code} key={language.code}>
-                  {language.name}
-                </option>
-              ))}
-            </TextField>
-          </Grid>
-          <Grid item>
-            {/* <Typography variant="caption">
-              {'Icons made by '}
-              <Link href="https://www.freepik.com" rel="sponsored" title="Freepik">
-                Freepik
-              </Link>
-              {' from '}
-              <Link href="https://www.flaticon.com" rel="sponsored" title="Flaticon">
-                www.flaticon.com
-              </Link>
-              {' is licensed by '}
-              <Link
-                href="https://creativecommons.org/licenses/by/3.0/"
-                title="Creative Commons BY 3.0"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                CC 3.0 BY
-              </Link>
-            </Typography> */}
-          </Grid>
+              <ul className={classes.list}>
+                  <li className={classes.listItem}>
+                    <Link href="http://www.hannah-starcevich.com/">Portfolio</Link>
+                  </li>
+                  <li className={classes.listItem}>
+                    <Link href="https://hannahstarcevich.github.io/HannahStarcevich-Portfolio/Hannah-Starcevich_Web-Developer-Resume.pdf">Resume</Link>
+                  </li>
+                </ul>
+            </Grid>
         </Grid>
       </Container>
     </Typography>

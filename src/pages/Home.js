@@ -12,13 +12,14 @@ import SearchBar from '../components/SearchBar';
 import Card from '../components/Card';
 import Map from '../components/Map';
 import { connect } from 'react-redux';
-import { Route } from 'react-router';
+import Paper from '@material-ui/core/Paper';
+
 
 const useStyles= makeStyles((theme) => ({
     mainContainer: {
         marginLeft: theme.spacing(8),
         marginTop: theme.spacing(2),
-        marginBottom: "2em",
+        marginBottom: "1em",
         width: "90%",
         justifyContent: "space-evenly",
         [theme.breakpoints.down("md")]:{
@@ -32,14 +33,18 @@ const useStyles= makeStyles((theme) => ({
             marginLeft: "3.5em"
         }
     },
-    cardContainer: {
-        flex: 1,
-        display: 'flex',
-        padding: theme.spacing(3),
-        justifyContent: 'space-between',
-    }, 
     card: {
-        marginLeft: "10em",
+        marginLeft: "4em",
+        marginTop: "2em",
+        marginBottom: "2em",
+    },
+    paper: {
+        width: "90%",
+        marginLeft: "4em",
+        display: 'flex',
+        color: theme.palette.orange.main,
+        backgroundColor: "#e1e1e1",
+        marginBottom: "2em",
     }
 }))
 
@@ -81,10 +86,8 @@ const Home = (props) => {
             <AppAppBar />
             <ProductHero/>
             <Grid container>
-                <Grid item item className={classes.mainContainer}>
-
-                    <SearchBar searchEmployee={searchEmployee} onChange={handleSeachInputChange} id="/yourAnchorTag"/>
-
+                <Grid item className={classes.mainContainer}>
+                    <SearchBar searchEmployee={searchEmployee} onChange={handleSeachInputChange} />
                 </Grid>
                 <Grid item className={classes.mainContainer}>
                      <EmployeeTable rows={employees.filter( (employee) => {
@@ -95,13 +98,15 @@ const Home = (props) => {
                         })} />
                 </Grid>
                 {props.firstName ? (
-                    <Grid container className={classes.cardContainer}>
-                        <Grid item xs={10} s={10} m={4} lg={4}  >
-                            <Card className={classes.cardContainer}/>
-                        </Grid>
-                        <Grid item xs={10} s={10} m={6} lg={8}>
-                            <Map center={coordinates}/>
-                        </Grid>
+                    <Grid container>
+                        <Paper elevation={3} variant="outlined" className={classes.paper} >
+                            <Grid item xs={12} s={12} m={4} lg={3}  className={classes.card}  >
+                                <Card />
+                            </Grid>
+                            <Grid item xs={12} s={12} m={6} lg={8}>
+                                <Map center={coordinates} className={classes.map}/>
+                            </Grid>
+                        </Paper>
                     </Grid>
                 ): null}
             </Grid>

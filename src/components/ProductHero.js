@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '../components/Button';
 import Typography from './Typography';
 import ProductHeroLayout from './ProductHeroLayout';
+import { Link, animateScroll as scroll } from "react-scroll";
 
 const backgroundImage =
   'https://cdn.dribbble.com/users/1107982/screenshots/15590058/media/009849e098dfd3c036ca2a2dd40ab17f.png';
@@ -42,18 +43,24 @@ function ProductHero(props) {
       <Typography color="inherit" align="center" variant="h5" className={classes.h5}>
         Find coworkers near you, reach out and schedule a networking event. 
       </Typography>
- 
-      <Button
-        color="secondary"
-        variant="contained"
-        size="large"
-        className={classes.button}
-        component="a"
-        href="/search"
-      >
-        Search
-      </Button>
-
+      <Link
+        activeClass="active"
+        to="section1"
+        spy={true}
+        smooth={true}
+        offset={-70}
+        duration={500}>
+          <Button
+            color="secondary"
+            variant="contained"
+            size="large"
+            className={classes.button}
+            // component="a"
+            // href="/search"
+          >
+            Search
+          </Button>
+      </Link>
       {/* <Typography variant="body2" color="inherit" className={classes.more}>
         Discover the experience
       </Typography> */}
