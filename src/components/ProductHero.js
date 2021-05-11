@@ -12,7 +12,7 @@ const backgroundImage =
 const styles = (theme) => ({
   background: {
     backgroundImage: `url(${backgroundImage})`,
-    backgroundColor: '#7fc7d9', // Average color of the background image.
+    backgroundColor: '#7fc7d9', 
     backgroundPosition: 'center',
   },
   button: {
@@ -55,15 +55,10 @@ function ProductHero(props) {
             variant="contained"
             size="large"
             className={classes.button}
-            // component="a"
-            // href="/search"
           >
             Search
           </Button>
       </Link>
-      {/* <Typography variant="body2" color="inherit" className={classes.more}>
-        Discover the experience
-      </Typography> */}
     </ProductHeroLayout>
   );
 }

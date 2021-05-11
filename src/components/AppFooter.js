@@ -4,7 +4,6 @@ import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import Container from '@material-ui/core/Container';
 import Typography from './Typography';
-import TextField from './TextField';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 
 function Copyright() {
