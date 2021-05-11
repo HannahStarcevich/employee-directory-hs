@@ -59,7 +59,7 @@ function EnhancedTableHead(props) {
   };
 
   return (
-    <TableHead id="section1">
+    <TableHead>
       <TableRow>
         {headCells.map((headCell) => (
           <TableCell
@@ -128,7 +128,7 @@ const EnhancedTableToolbar = (props) => {
       })}
     >
       {numSelected > 0 ? (
-        <Typography className={classes.title} color="inherit" variant="subtitle1" component="div">
+        <Typography className={classes.title} color="inherit" variant="h5" component="div">
           You Selected {selected[0].name.first} 
         </Typography>
       ) : (
@@ -182,15 +182,6 @@ export default function UserTable(props) {
     setOrderBy(property);
   };
 
-  // const handleSelectAllClick = (event) => {
-  //   if (event.target.checked) {
-  //     const newSelecteds = props.rows.map((n) => n.name);
-  //     setSelected(newSelecteds);
-  //     return;
-  //   }
-  //   setSelected([]);
-  // };
-
   const handleClick = (event, name) => {
 
     let newSelected = [name];
@@ -236,7 +227,7 @@ export default function UserTable(props) {
 
   return (
     <div className={classes.root}>
-      <Paper className={classes.paper}>
+      <Paper className={classes.paper} id="section1">
         <EnhancedTableToolbar numSelected={selected.length} selected={selected}/>
         <TableContainer>
           <Table
@@ -251,7 +242,6 @@ export default function UserTable(props) {
               selected={selected}
               order={order}
               orderBy={orderBy}
-              // onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
               rowCount={props.rows.length}
             />

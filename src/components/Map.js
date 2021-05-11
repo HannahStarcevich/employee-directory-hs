@@ -8,8 +8,9 @@ import Typography from '@material-ui/core/Typography';
 
 const containerStyle = {
   width: '100%',
-  height: '500px',
+  height: '420px',
   marginTop: "2em",
+  marginBottom: "1em",
   border: '1px solid',
   borderRadius: 2,
   transition: '0.4s',
@@ -67,6 +68,7 @@ function Map(props) {
         mapContainerStyle={containerStyle}
         center={props.center}
         zoom={4}
+        tilt={45}
         onLoad={onLoad}
         onUnmount={onUnmount}
       >

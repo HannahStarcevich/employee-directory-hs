@@ -11,6 +11,7 @@ import ProductHero from '../components/ProductHero';
 import SearchBar from '../components/SearchBar';
 import Card from '../components/Card';
 import Map from '../components/Map';
+import CardDisclaimer from '../components/CardDisclaimer';
 import { connect } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
 
@@ -26,11 +27,11 @@ const useStyles= makeStyles((theme) => ({
             width: "80%"
         },
         [theme.breakpoints.down("sm")]:{
-            width: "70%"
+            width: "90%"
         },
         [theme.breakpoints.down("xs")]:{
             spacing: theme.spacing(2),
-            marginLeft: "3.5em"
+            // marginLeft: "3.5em"
         }
     },
     card: {
@@ -48,13 +49,13 @@ const useStyles= makeStyles((theme) => ({
     }
 }))
 
-// set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
-Geocode.setApiKey(process.env.GOOGLE_MAPS_API_KEY);
+// // set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
+// Geocode.setApiKey(process.env.GOOGLE_MAPS_API_KEY);
 
-// set response language. Defaults to english.
-Geocode.setLanguage("en");
-Geocode.setRegion("us");
-Geocode.setLocationType("ROOFTOP");
+// // set response language. Defaults to english.
+// Geocode.setLanguage("en");
+// Geocode.setRegion("us");
+// Geocode.setLocationType("ROOFTOP");
 
 const Home = (props) => {
 
@@ -83,11 +84,11 @@ const Home = (props) => {
 
     return( 
         <React.Fragment>
-            <AppAppBar />
-            <ProductHero/>
+            <AppAppBar xs={12} />
+            <ProductHero xs={12} />
             <Grid container>
-                <Grid item className={classes.mainContainer}>
-                    <SearchBar searchEmployee={searchEmployee} onChange={handleSeachInputChange} />
+                <Grid item className={classes.mainContainer} xs={12} >
+                    <SearchBar searchEmployee={searchEmployee} onChange={handleSeachInputChange} xs={10}/>
                 </Grid>
                 <Grid item className={classes.mainContainer}>
                      <EmployeeTable rows={employees.filter( (employee) => {
@@ -105,6 +106,7 @@ const Home = (props) => {
                             </Grid>
                             <Grid item xs={12} s={12} m={6} lg={8}>
                                 <Map center={coordinates} className={classes.map}/>
+                                <CardDisclaimer />
                             </Grid>
                         </Paper>
                     </Grid>
